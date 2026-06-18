@@ -1,0 +1,23 @@
+---
+- name: This playbook install web server on nodes
+  hosts: all
+  become: true
+  tasks:
+    - name: Downloading apache web server
+      dnf:
+        name: httpd
+        state: present
+
+    - name: Starting apache server
+      service:
+        name: httpd
+        state: started
+        enabled: true
+
+    - name: Open http service in firewall
+      firewalld:
+        service: http
+        state: enabled
+        permanent: true
+        immediate: true
+
