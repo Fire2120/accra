@@ -1,0 +1,13 @@
+---
+- name: This play create users on system
+  hosts: all
+  become: true
+  tasks:
+    - name: Create users
+      user:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - koffi
+        - ama
+        - eric
