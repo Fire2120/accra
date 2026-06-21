@@ -1,0 +1,12 @@
+---
+- name: registerfacts
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Get kernel info
+      command: "uname -a"
+      register: unameOutput
+
+    - name: Display uname output
+      debug:
+        var: unameOutput

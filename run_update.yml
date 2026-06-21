@@ -1,0 +1,23 @@
+---
+- name: Update all RHEL servers
+  hosts: all
+  become: true
+  gather_facts: true
+
+  tasks:
+    - name: Update all packages to the latest version
+      dnf:
+        name: "*"
+        state: latest
+
+    - name: Check if reboot is required
+      command: needs-restarting -r
+      register: reboot_required
+      failed_when: false
+      changed_when: false
+
+    - name: Reboot server if required
+      reboot:
+        msg: "Rebooting after system update"
+        reboot_timeout: 600
+      when: reboot_required.rc != 0
