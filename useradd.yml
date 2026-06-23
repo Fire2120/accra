@@ -9,5 +9,4 @@
         state: present
       loop:
         - koffi
-        - ama
         - eric
