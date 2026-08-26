@@ -6,18 +6,18 @@
 
   tasks:
     - name: Update all packages to the latest version
-      dnf:
+      ansible.builtin.dnf:
         name: "*"
         state: latest
 
     - name: Check if reboot is required
-      command: needs-restarting -r
+      ansible.builtin.command: needs-restarting -r
       register: reboot_required
       failed_when: false
       changed_when: false
 
     - name: Reboot server if required
-      reboot:
+      ansible.builtin.reboot:
         msg: "Rebooting after system update"
         reboot_timeout: 600
       when: reboot_required.rc != 0

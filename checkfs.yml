@@ -1,0 +1,13 @@
+---
+- name: Check status module
+  hosts: test1
+  become: true
+  tasks:
+    - name: Check file status and attributes
+      stat:
+         path: /root/test1.sh
+      register: os
+
+    - name: Show results
+      debug:
+         msg: File attributes {{ os }}
