@@ -1,0 +1,10 @@
+---
+- name: Install http
+  hosts: all
+  gather_facts: true
+  become: true
+  tasks:
+    - name: Installing httpd
+      ansible.builtin.dnf:
+        name: httpd
+        state: present
