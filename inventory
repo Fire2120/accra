@@ -1,9 +1,14 @@
-[web_ser]
+[test]
 192.168.4.50
 192.168.4.40
 
-[test1]
+[dev]
 192.168.4.47
 
-#[monitor]
-#192.168.4.32
+[prod]
+192.168.4.32
+192.168.4.30
+
+[all:vars]
+ansible_user=kayaato
+ansible_python_interpreter=/usr/bin/python3.12

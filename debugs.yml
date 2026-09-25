@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+    -  command: "uname"
+       register: unameOutput
+    -  debug:
+      #msg: "uname result: {{ unameOutput.stdout }}"
+         var: unameOutput
